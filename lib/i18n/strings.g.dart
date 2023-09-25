@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 6 (3 per locale)
+/// Strings: 16 (8 per locale)
 ///
-/// Built on 2023-09-24 at 12:59 UTC
+/// Built on 2023-09-24 at 16:17 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -153,6 +153,7 @@ class _StringsEn implements BaseTranslations<AppLocale, _StringsEn> {
 	late final _StringsProfileEn profile = _StringsProfileEn._(_root);
 	late final _StringsScheduleEn schedule = _StringsScheduleEn._(_root);
 	late final _StringsSearchEn search = _StringsSearchEn._(_root);
+	late final _StringsSettingsEn settings = _StringsSettingsEn._(_root);
 }
 
 // Path: profile
@@ -185,6 +186,20 @@ class _StringsSearchEn {
 	String get label => 'Search';
 }
 
+// Path: settings
+class _StringsSettingsEn {
+	_StringsSettingsEn._(this._root);
+
+	final _StringsEn _root; // ignore: unused_field
+
+	// Translations
+	String get label => 'Settings';
+	String get theme_picker => 'Theme picker';
+	String get system_theme => 'System';
+	String get dark_theme => 'Dark';
+	String get light_theme => 'Light';
+}
+
 // Path: <root>
 class _StringsRu implements _StringsEn {
 
@@ -213,6 +228,7 @@ class _StringsRu implements _StringsEn {
 	@override late final _StringsProfileRu profile = _StringsProfileRu._(_root);
 	@override late final _StringsScheduleRu schedule = _StringsScheduleRu._(_root);
 	@override late final _StringsSearchRu search = _StringsSearchRu._(_root);
+	@override late final _StringsSettingsRu settings = _StringsSettingsRu._(_root);
 }
 
 // Path: profile
@@ -245,6 +261,20 @@ class _StringsSearchRu implements _StringsSearchEn {
 	@override String get label => 'Поиск';
 }
 
+// Path: settings
+class _StringsSettingsRu implements _StringsSettingsEn {
+	_StringsSettingsRu._(this._root);
+
+	@override final _StringsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get label => 'Настройки';
+	@override String get theme_picker => 'Выбор темы';
+	@override String get system_theme => 'Системная';
+	@override String get dark_theme => 'Темная';
+	@override String get light_theme => 'Светлая';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
@@ -254,6 +284,11 @@ extension on _StringsEn {
 			case 'profile.label': return 'Profile';
 			case 'schedule.label': return 'Schedule';
 			case 'search.label': return 'Search';
+			case 'settings.label': return 'Settings';
+			case 'settings.theme_picker': return 'Theme picker';
+			case 'settings.system_theme': return 'System';
+			case 'settings.dark_theme': return 'Dark';
+			case 'settings.light_theme': return 'Light';
 			default: return null;
 		}
 	}
@@ -265,6 +300,11 @@ extension on _StringsRu {
 			case 'profile.label': return 'Профиль';
 			case 'schedule.label': return 'Расписание';
 			case 'search.label': return 'Поиск';
+			case 'settings.label': return 'Настройки';
+			case 'settings.theme_picker': return 'Выбор темы';
+			case 'settings.system_theme': return 'Системная';
+			case 'settings.dark_theme': return 'Темная';
+			case 'settings.light_theme': return 'Светлая';
 			default: return null;
 		}
 	}

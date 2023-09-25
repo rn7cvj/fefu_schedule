@@ -5,12 +5,18 @@ class Search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).colorScheme.secondaryContainer,
-      child: Icon(
-        Icons.search,
-        color: Theme.of(context).colorScheme.onSecondaryContainer,
-        size: MediaQuery.sizeOf(context).shortestSide / 2,
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+      body: Center(
+        child: Icon(
+          Icons.search,
+          color: Theme.of(context).colorScheme.onSecondaryContainer,
+          size: MediaQuery.sizeOf(context).shortestSide / 2,
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.search),
       ),
     );
   }

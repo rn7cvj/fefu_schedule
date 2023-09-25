@@ -39,6 +39,8 @@ dependencies:
 
   google_nav_bar: ^5.0.6
 
+  page_transition: "^2.1.0"
+
   # vibration: ^1.7.5
   # vibration_web: ^1.6.5
   
@@ -48,6 +50,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   file_picker: ^5.5.0
+  animations: ^2.0.8
 
 dev_dependencies:
   flutter_test:

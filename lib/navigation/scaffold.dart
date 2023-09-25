@@ -1,5 +1,7 @@
 import 'package:fefu_schedule/i18n/strings.g.dart';
+import 'package:fefu_schedule/logger.dart';
 import 'package:fefu_schedule/navigation/navigator.dart';
+import 'package:fefu_schedule/router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -19,15 +21,19 @@ class ScaffoldWithGNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       body: child,
       bottomNavigationBar: GNav(
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.6),
+        // selectedIndex: calculateIdnex(state.fullPath!),
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.8),
+
         tabBackgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.8),
         color: Theme.of(context).colorScheme.onSecondaryContainer,
         activeColor: Theme.of(context).colorScheme.onPrimaryContainer,
         tabMargin: const EdgeInsets.only(bottom: 24.0, top: 8.0, left: 8.0, right: 8.0),
         padding: const EdgeInsets.all(16),
-        haptic: true,
+        haptic: false,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         onTabChange: (tabIndex) => _navigatonFunction[tabIndex](),
         tabs: [
           GButton(
@@ -45,5 +51,15 @@ class ScaffoldWithGNavbar extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  bool shoudHaveNavBar(String path) {
+    if (["/schedule", "/search", "/profile"].contains(path)) return true;
+
+    return false;
+  }
+
+  int calculateIdnex(String path) {
+    return routeIndex[path] ?? 0;
   }
 }
