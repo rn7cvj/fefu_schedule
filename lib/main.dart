@@ -1,14 +1,25 @@
+import 'package:fefu_schedule/controllers/theme/theme_controller.dart';
+import 'package:fefu_schedule/controllers/theme/theme_storage.dart';
 import 'package:fefu_schedule/i18n/strings.g.dart';
 import 'package:fefu_schedule/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
-void main() {
+Future<void> main() async {
+  ThemeStorage themeStorage = ThemeStorage();
+  ThemeContoller themeContoller = ThemeContoller(themeStorage: themeStorage);
+  await themeStorage.init();
+  await themeContoller.init();
+
+  GetIt.I.registerSingleton<ThemeContoller>(themeContoller);
+
   setUpSystemUIOverlay();
   LocaleSettings.useDeviceLocale();
 
-  runApp(TranslationProvider(child: App()));
+  runApp(TranslationProvider(child: const App()));
 }
 
 void setUpSystemUIOverlay() {
@@ -24,36 +35,35 @@ void setUpSystemUIOverlay() {
 }
 
 class App extends StatelessWidget {
-  App({super.key});
-
-  final _lightTheme = ThemeData(
-    colorScheme: ColorScheme.fromSeed(
-      brightness: Brightness.light,
-      seedColor: const Color.fromRGBO(9, 103, 176, 1),
-    ),
-    useMaterial3: true,
-  );
-
-  final _darkTheme = ThemeData(
-    colorScheme: ColorScheme.fromSeed(
-      brightness: Brightness.dark,
-      seedColor: const Color.fromRGBO(9, 103, 176, 1),
-    ),
-    useMaterial3: true,
-  );
+  const App({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: "Fefu Schedule",
-      themeMode: ThemeMode.system,
-      theme: _lightTheme,
-      darkTheme: _darkTheme,
-      locale: TranslationProvider.of(context).flutterLocale,
-      supportedLocales: AppLocaleUtils.supportedLocales,
-      localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      routerConfig: router,
-      debugShowCheckedModeBanner: false,
-    );
-  }
+  Widget build(BuildContext context) => Observer(
+        builder: (_) {
+          ThemeContoller themeContoller = GetIt.I<ThemeContoller>();
+          return MaterialApp.router(
+            title: "Fefu Schedule",
+            themeMode: themeContoller.theme,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(
+                brightness: Brightness.light,
+                seedColor: themeContoller.themeColor,
+              ),
+              useMaterial3: true,
+            ),
+            darkTheme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(
+                brightness: Brightness.dark,
+                seedColor: themeContoller.themeColor,
+              ),
+              useMaterial3: true,
+            ),
+            locale: TranslationProvider.of(context).flutterLocale,
+            supportedLocales: AppLocaleUtils.supportedLocales,
+            localizationsDelegates: GlobalMaterialLocalizations.delegates,
+            routerConfig: router,
+            debugShowCheckedModeBanner: false,
+          );
+        },
+      );
 }

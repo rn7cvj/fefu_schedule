@@ -1,0 +1,28 @@
+{
+    // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+    // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+    // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "fefu_schedule",
+            "request": "launch",
+            "type": "dart",
+            "args": ["--web-browser-flag", "--disable-web-security", "--web-port" , "1234"]
+        },
+        {
+            "name": "fefu_schedule (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": ["--web-browser-flag", "--disable-web-security", "--web-port" , "1234"]
+        },
+        {
+            "name": "fefu_schedule (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": ["--web-browser-flag", "--disable-web-security", "--web-port" , "1234"]
+        }
+    ]
+}

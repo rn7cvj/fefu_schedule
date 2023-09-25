@@ -1,9 +1,14 @@
+import 'package:fefu_schedule/controllers/settings/settings_controller.dart';
 import 'package:fefu_schedule/i18n/strings.g.dart';
 import 'package:fefu_schedule/pages/settings/widgets/theme_picker.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({super.key});
+  Settings({super.key}) {
+    controller = SettingsController();
+  }
+
+  late SettingsController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,9 @@ class Settings extends StatelessWidget {
                     ),
                   ),
                 ),
-                ThemePicker(),
+                ThemePicker(
+                  settingsController: controller,
+                ),
               ],
             ),
           ),

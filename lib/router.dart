@@ -88,7 +88,7 @@ final GoRouter router = GoRouter(
             GoRoute(
               path: "settings",
               name: t.settings.label,
-              builder: (context, state) => const Settings(),
+              builder: (context, state) => Settings(),
             )
           ],
         ),
