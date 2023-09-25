@@ -1,5 +1,6 @@
 import 'package:fefu_schedule/controllers/theme/theme_storage.dart';
 import 'package:fefu_schedule/logger.dart';
+import 'package:fefu_schedule/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
@@ -12,14 +13,14 @@ abstract class ThemeControllerStorage with Store {
 
   final ThemeStorage _themeStorage;
 
+  @action
   Future<void> init() async {
     await _themeStorage.init();
 
-    logger.i(_themeStorage.theme);
-    logger.i(_themeStorage.themeColor);
+    logger.i("Loaded theme: ${_themeStorage.theme}\nLoaded color: ${_themeStorage.themeColor.toHex()} ");
 
-    changeTheme(_themeStorage.theme);
-    // changeThemeColor(_themeStorage.themeColor);
+    theme = _themeStorage.theme;
+    themeColor = _themeStorage.themeColor;
   }
 
   @action

@@ -1,3 +1,4 @@
+import 'package:fefu_schedule/controllers/settings/settings_controller.dart';
 import 'package:fefu_schedule/controllers/theme/theme_controller.dart';
 import 'package:fefu_schedule/controllers/theme/theme_storage.dart';
 import 'package:fefu_schedule/i18n/strings.g.dart';
@@ -11,10 +12,14 @@ import 'package:get_it/get_it.dart';
 Future<void> main() async {
   ThemeStorage themeStorage = ThemeStorage();
   ThemeContoller themeContoller = ThemeContoller(themeStorage: themeStorage);
-  await themeStorage.init();
+
+  SettingsController settingsController = SettingsController(themeContoller: themeContoller);
+
   await themeContoller.init();
+  await settingsController.init();
 
   GetIt.I.registerSingleton<ThemeContoller>(themeContoller);
+  GetIt.I.registerSingleton<SettingsController>(settingsController);
 
   setUpSystemUIOverlay();
   LocaleSettings.useDeviceLocale();

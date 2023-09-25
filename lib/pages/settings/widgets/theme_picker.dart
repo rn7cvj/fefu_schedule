@@ -14,6 +14,12 @@ class ThemePicker extends StatelessWidget {
     double width = MediaQuery.sizeOf(context).shortestSide;
     width = min(width, 600);
 
+    Color selectedButtonColor = Theme.of(context).colorScheme.primaryContainer;
+    Color unselectedButtonColor = Theme.of(context).colorScheme.primary;
+
+    Color selectedButtonContentColor = Theme.of(context).colorScheme.onPrimaryContainer;
+    Color unselectedButtonContentColor = Theme.of(context).colorScheme.onPrimary;
+
     return SizedBox(
       width: width,
       child: Observer(
@@ -26,17 +32,22 @@ class ThemePicker extends StatelessWidget {
                 child: AnimatedContainer(
                   duration: const Duration(microseconds: 200),
                   child: ThemeButton(
-                    backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                    backgroundColor: settingsController.selectedThemeMode == ThemeMode.system
+                        ? selectedButtonColor
+                        : unselectedButtonColor,
                     icon: Icons.android,
-                    iconColor: Theme.of(context).colorScheme.onPrimaryContainer,
+                    iconColor: settingsController.selectedThemeMode == ThemeMode.system
+                        ? selectedButtonContentColor
+                        : unselectedButtonContentColor,
                     label: Text(
                       "System",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                            color: settingsController.selectedThemeMode == ThemeMode.system
+                                ? selectedButtonContentColor
+                                : unselectedButtonContentColor,
+                          ),
                     ),
-                    onTap: () {},
+                    onTap: () => settingsController.changeTheme(ThemeMode.system),
                   ),
                 ),
               ),
@@ -45,17 +56,22 @@ class ThemePicker extends StatelessWidget {
                 child: AnimatedContainer(
                   duration: const Duration(microseconds: 200),
                   child: ThemeButton(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    backgroundColor: settingsController.selectedThemeMode == ThemeMode.dark
+                        ? selectedButtonColor
+                        : unselectedButtonColor,
                     icon: Icons.dark_mode,
-                    iconColor: Theme.of(context).colorScheme.onPrimary,
+                    iconColor: settingsController.selectedThemeMode == ThemeMode.dark
+                        ? selectedButtonContentColor
+                        : unselectedButtonContentColor,
                     label: Text(
                       "Dark",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                            color: settingsController.selectedThemeMode == ThemeMode.dark
+                                ? selectedButtonContentColor
+                                : unselectedButtonContentColor,
+                          ),
                     ),
-                    onTap: () {},
+                    onTap: () => settingsController.changeTheme(ThemeMode.dark),
                   ),
                 ),
               ),
@@ -64,17 +80,22 @@ class ThemePicker extends StatelessWidget {
                 child: AnimatedContainer(
                   duration: const Duration(microseconds: 200),
                   child: ThemeButton(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    backgroundColor: settingsController.selectedThemeMode == ThemeMode.light
+                        ? selectedButtonColor
+                        : unselectedButtonColor,
                     icon: Icons.light_mode,
-                    iconColor: Theme.of(context).colorScheme.onPrimary,
+                    iconColor: settingsController.selectedThemeMode == ThemeMode.light
+                        ? selectedButtonContentColor
+                        : unselectedButtonContentColor,
                     label: Text(
                       "Light",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                            color: settingsController.selectedThemeMode == ThemeMode.light
+                                ? selectedButtonContentColor
+                                : unselectedButtonContentColor,
+                          ),
                     ),
-                    onTap: () {},
+                    onTap: () => settingsController.changeTheme(ThemeMode.light),
                   ),
                 ),
               ),
@@ -106,7 +127,8 @@ class ThemeButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(24),
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
         padding: const EdgeInsets.all(16.0),
         margin: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(

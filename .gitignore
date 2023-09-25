@@ -44,3 +44,4 @@ app.*.map.json
 
 /build/
 /windows/
+/lib/gen/

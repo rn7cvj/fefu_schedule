@@ -1,4 +1,5 @@
 import 'package:fefu_schedule/controllers/theme/theme_controller.dart';
+import 'package:fefu_schedule/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
@@ -8,9 +9,12 @@ part '../../gen/controllers/settings/settings_controller.g.dart';
 class SettingsController = SettingsControllerStorage with _$SettingsController;
 
 abstract class SettingsControllerStorage with Store {
-  final ThemeContoller _themeContoller = GetIt.I<ThemeContoller>();
+  final ThemeContoller _themeContoller;
 
-  SettingsControllerStorage() {
+  SettingsControllerStorage({required ThemeContoller themeContoller}) : _themeContoller = themeContoller;
+
+  @action
+  Future<void> init() async {
     selectedThemeMode = _themeContoller.theme;
     selectedColor = _themeContoller.themeColor;
   }
@@ -28,17 +32,16 @@ abstract class SettingsControllerStorage with Store {
   }
 
   @observable
-  late ThemeMode selectedThemeMode;
+  ThemeMode selectedThemeMode = ThemeMode.system;
 
   @observable
-  late Color selectedColor;
+  Color selectedColor = HexColor.fromHex("#0967b0");
 
   List<Color> themeColorsList = [
     const Color.fromRGBO(9, 103, 176, 1),
     Colors.amber,
     Colors.purple,
-    Colors.grey,
     Colors.green,
-    Colors.lightBlue,
+    Colors.indigo,
   ];
 }

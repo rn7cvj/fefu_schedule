@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 16 (8 per locale)
+/// Strings: 18 (9 per locale)
 ///
-/// Built on 2023-09-24 at 16:17 UTC
+/// Built on 2023-09-25 at 08:51 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -195,6 +195,7 @@ class _StringsSettingsEn {
 	// Translations
 	String get label => 'Settings';
 	String get theme_picker => 'Theme picker';
+	String get color_picker => 'Color picker';
 	String get system_theme => 'System';
 	String get dark_theme => 'Dark';
 	String get light_theme => 'Light';
@@ -270,6 +271,7 @@ class _StringsSettingsRu implements _StringsSettingsEn {
 	// Translations
 	@override String get label => 'Настройки';
 	@override String get theme_picker => 'Выбор темы';
+	@override String get color_picker => 'Выбор цвета';
 	@override String get system_theme => 'Системная';
 	@override String get dark_theme => 'Темная';
 	@override String get light_theme => 'Светлая';
@@ -286,6 +288,7 @@ extension on _StringsEn {
 			case 'search.label': return 'Search';
 			case 'settings.label': return 'Settings';
 			case 'settings.theme_picker': return 'Theme picker';
+			case 'settings.color_picker': return 'Color picker';
 			case 'settings.system_theme': return 'System';
 			case 'settings.dark_theme': return 'Dark';
 			case 'settings.light_theme': return 'Light';
@@ -302,6 +305,7 @@ extension on _StringsRu {
 			case 'search.label': return 'Поиск';
 			case 'settings.label': return 'Настройки';
 			case 'settings.theme_picker': return 'Выбор темы';
+			case 'settings.color_picker': return 'Выбор цвета';
 			case 'settings.system_theme': return 'Системная';
 			case 'settings.dark_theme': return 'Темная';
 			case 'settings.light_theme': return 'Светлая';
