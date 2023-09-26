@@ -16,3 +16,26 @@ extension HexColor on Color {
       '${green.toRadixString(16).padLeft(2, '0')}'
       '${blue.toRadixString(16).padLeft(2, '0')}';
 }
+
+extension ListJoin on Iterable {
+  Iterable<dynamic> joinDynamic(dynamic sepeator) sync* {
+    if (length == 0) return;
+
+    if (length == 1) {
+      yield first;
+      return;
+    }
+
+    yield sepeator;
+    yield first;
+
+    for (int i = 1; i < length - 1; i++) {
+      yield sepeator;
+      yield elementAt(i);
+    }
+
+    yield sepeator;
+    yield last;
+    yield sepeator;
+  }
+}

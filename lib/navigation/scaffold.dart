@@ -1,10 +1,9 @@
 import 'package:fefu_schedule/i18n/strings.g.dart';
-import 'package:fefu_schedule/logger.dart';
 import 'package:fefu_schedule/navigation/navigator.dart';
 import 'package:fefu_schedule/router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:nav_bar/nav_bar.dart';
 
 final _navigatonFunction = [
   AppNavigator.goToSchedule,

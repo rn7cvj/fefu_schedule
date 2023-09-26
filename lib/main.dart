@@ -10,6 +10,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 
 Future<void> main() async {
+  setUpSystemUIOverlay();
+
   ThemeStorage themeStorage = ThemeStorage();
   ThemeContoller themeContoller = ThemeContoller(themeStorage: themeStorage);
 
@@ -21,7 +23,6 @@ Future<void> main() async {
   GetIt.I.registerSingleton<ThemeContoller>(themeContoller);
   GetIt.I.registerSingleton<SettingsController>(settingsController);
 
-  setUpSystemUIOverlay();
   LocaleSettings.useDeviceLocale();
 
   runApp(TranslationProvider(child: const App()));
