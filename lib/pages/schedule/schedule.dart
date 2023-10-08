@@ -19,14 +19,6 @@ class Schedule extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: WeekData(),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: WeekDayIndicator(),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: DatePicker(),
-            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8.0),

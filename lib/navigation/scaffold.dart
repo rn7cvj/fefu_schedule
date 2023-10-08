@@ -32,7 +32,7 @@ class ScaffoldWithGNavbar extends StatelessWidget {
         tabMargin: const EdgeInsets.only(bottom: 24.0, top: 8.0, left: 8.0, right: 8.0),
         padding: const EdgeInsets.all(16),
         haptic: false,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         onTabChange: (tabIndex) => _navigatonFunction[tabIndex](),
         tabs: [
           GButton(

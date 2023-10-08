@@ -1,5 +1,6 @@
 import 'package:fefu_schedule/i18n/strings.g.dart';
 import 'package:fefu_schedule/navigation/navigator.dart';
+import 'package:fefu_schedule/pages/profile/widgets/group_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -10,11 +11,26 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-      body: Center(
-        child: Icon(
-          Icons.person,
-          color: Theme.of(context).colorScheme.onSecondaryContainer,
-          size: MediaQuery.sizeOf(context).shortestSide / 2,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    "Ваша группа",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(color: Theme.of(context).colorScheme.onSecondaryContainer),
+                  ),
+                ),
+              ),
+              GroupPicker(),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

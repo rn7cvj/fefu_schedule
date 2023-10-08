@@ -1,3 +1,5 @@
+import 'package:fefu_schedule/pages/schedule/widgets/date_picker.dart';
+import 'package:fefu_schedule/pages/schedule/widgets/week_day_indicator.dart';
 import 'package:flutter/material.dart';
 
 class ShedulePage extends StatelessWidget {
@@ -5,11 +7,15 @@ class ShedulePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(children: [
-        EventCard(),
-        Divider(
-          color: Theme.of(context).colorScheme.secondary,
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+          child: WeekDayIndicator(),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 4.0, right: 4.0, bottom: 8.0),
+          child: DatePicker(),
         ),
         EventCard(),
         Divider(
@@ -40,7 +46,11 @@ class ShedulePage extends StatelessWidget {
           color: Theme.of(context).colorScheme.secondary,
         ),
         EventCard(),
-      ]),
+        Divider(
+          color: Theme.of(context).colorScheme.secondary,
+        ),
+        EventCard(),
+      ],
     );
   }
 }
@@ -55,10 +65,24 @@ class EventCard extends StatelessWidget {
         Row(
           children: [
             Chip(
-              label: Text("1"),
+              color: MaterialStatePropertyAll<Color>(Theme.of(context).colorScheme.primaryContainer),
+              label: Text(
+                "1",
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall!
+                    .copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
+              ),
             ),
             Chip(
-              label: Text("08:30 - 10:00"),
+              color: MaterialStatePropertyAll<Color>(Theme.of(context).colorScheme.secondaryContainer),
+              label: Text(
+                "08:30 - 10:00",
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall!
+                    .copyWith(color: Theme.of(context).colorScheme.onSecondaryContainer),
+              ),
             )
           ],
         ),
